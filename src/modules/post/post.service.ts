@@ -27,6 +27,7 @@ const getAllPost = async (options: any) => {
     where: {
       title: {
         contains: searchTerm,
+        mode: "insensitive",
       },
     },
   });
