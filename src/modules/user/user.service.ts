@@ -32,14 +32,17 @@ const CreateOrUpdateUser = async (data: Profile): Promise<Profile> => {
 };
 
 const GetUser = async () => {
-  const result = await prisma.user.findMany({
-    // select: {
-    //   email: true,
-    // },
-    include: {
-      profile: true,
-    },
-  });
+  // const result = await prisma.user.findMany({
+  //   // select: {
+  //   //   email: true,
+  //   // },
+  //   include: {
+  //     profile: true,
+  //   },
+  // });
+
+  // Raw database access = https://www.prisma.io/docs/concepts/components/prisma-client/raw-database-access
+  const result = await prisma.$queryRaw`SELECT * FROM users`;
 
   return result;
 };
