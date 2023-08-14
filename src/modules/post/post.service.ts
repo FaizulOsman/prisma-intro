@@ -75,12 +75,19 @@ const deletePost = async (id: any) => {
 };
 
 const learnAggregateAndGrouping = async () => {
-  const result = await prisma.post.aggregate({
-    _avg: {
-      id: true,
-    },
-    _max: {
-      id: true,
+  // const result = await prisma.post.aggregate({
+  //   _avg: {
+  //     id: true,
+  //   },
+  //   _max: {
+  //     id: true,
+  //   },
+  // });
+
+  const result = await prisma.post.groupBy({
+    by: ["title"],
+    _count: {
+      title: true,
     },
   });
 
